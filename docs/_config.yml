@@ -38,30 +38,7 @@ mermaid:
   # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
   version: "10.6.1"
 
-# Custom head scripts for Mermaid and styling
-head_scripts: |
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default',
-      themeVariables: {
-        primaryColor: '#3b82f6',
-        primaryTextColor: '#1f2937',
-        primaryBorderColor: '#2563eb',
-        lineColor: '#6b7280',
-        secondaryColor: '#f0f9ff',
-        tertiaryColor: '#dbeafe',
-        background: '#ffffff',
-        mainBkg: '#ffffff'
-      }
-    });
-  </script>
+# Custom head includes are handled by _includes/head_custom.html
 
 # Navigation
 nav_external_links:
@@ -99,9 +76,20 @@ footer_content: "Copyright &copy; 2024 Aansh Shah. Distributed under the MIT Lic
 highlighter: rouge
 markdown: kramdown
 kramdown:
+  input: GFM
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
       line_numbers: true
+    span:
+      line_numbers: false
+  auto_ids: true
+  hard_wrap: false
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: "1..6"
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
 
 # Collections for better organization
 collections:
