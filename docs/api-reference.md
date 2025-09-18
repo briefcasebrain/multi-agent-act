@@ -4,10 +4,50 @@ title: 📚 API Reference
 nav_order: 6
 ---
 
-# API Reference
+# <i class="fas fa-book"></i> API Reference
 {: .no_toc }
 
-Complete API documentation for the Multi-Agent Collaborative Learning library.
+<div class="content-section" style="background: linear-gradient(135deg, #e8f5e8, #f1f8e9); text-align: center;">
+  <h2 style="margin-top: 0; color: #1e293b;"><i class="fas fa-code"></i> Complete API Documentation</h2>
+  <p style="color: #475569;">Comprehensive reference for all classes, methods, and configuration options</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+    <span class="badge" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-search"></i> Searchable
+    </span>
+    <span class="badge" style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-link"></i> Cross-Referenced
+    </span>
+    <span class="badge" style="background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-examples"></i> With Examples
+    </span>
+  </div>
+</div>
+
+{: .important }
+> **🎯 Navigation Tip**: Use <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for specific classes or methods. All code examples are copy-paste ready.
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">⚙️</div>
+    <h4>Core Configuration</h4>
+    <p>Essential setup and configuration classes</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🎭</div>
+    <h4>Scenario Classes</h4>
+    <p>Tournament, mentorship, and research scenarios</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🤖</div>
+    <h4>Agent Framework</h4>
+    <p>Base classes and collaboration systems</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <h4>Analytics & Metrics</h4>
+    <p>Performance tracking and visualization</p>
+  </div>
+</div>
 
 ## Table of Contents
 {: .no_toc .text-delta }
@@ -17,17 +57,31 @@ Complete API documentation for the Multi-Agent Collaborative Learning library.
 
 ---
 
-## Core Module
+## <i class="fas fa-cog"></i> Core Module
 
 ### Configuration Classes
 
-#### `ScenarioConfig`
+#### <i class="fas fa-cogs"></i> `ScenarioConfig`
 
-Central configuration class for all learning scenarios.
+<div class="content-section">
 
+{: .highlight }
+**Central configuration class for all learning scenarios**. This is your primary interface for customizing scenario behavior.
+
+{: .note }
+**💡 Usage Tip**: Start with default values and adjust based on your specific needs. Most scenarios work well with defaults.
+
+</div>
+
+**Class Definition:**
 ```python
 @dataclass
 class ScenarioConfig:
+    """Configuration for multi-agent learning scenarios.
+
+    This class centralizes all scenario parameters and provides
+    sensible defaults for different learning environments.
+    """
     scenario_type: LearningScenarioType
     duration_episodes: int = 100
     participants: int = 6
@@ -39,15 +93,52 @@ class ScenarioConfig:
     scenario_parameters: Dict[str, Any] = field(default_factory=dict)
 ```
 
-**Parameters:**
-- `scenario_type`: Type of learning scenario to run
-- `duration_episodes`: Number of episodes to execute
-- `participants`: Number of participating agents
-- `success_criteria`: Scenario-specific success thresholds
-- `reward_structure`: One of "individual", "collective", or "mixed"
-- `knowledge_sharing_rate`: Rate of knowledge exchange [0, 1]
-- `adaptation_frequency`: Episodes between adaptation cycles
-- `evaluation_metrics`: List of metrics to track
+**📋 Parameter Reference:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `scenario_type` | `LearningScenarioType` | *Required* | Type of learning scenario to run |
+| `duration_episodes` | `int` | `100` | Number of episodes to execute |
+| `participants` | `int` | `6` | Number of participating agents |
+| `success_criteria` | `Dict[str, float]` | `{}` | Scenario-specific success thresholds |
+| `reward_structure` | `str` | `"mixed"` | One of `"individual"`, `"collective"`, or `"mixed"` |
+| `knowledge_sharing_rate` | `float` | `0.3` | Rate of knowledge exchange `[0, 1]` |
+| `adaptation_frequency` | `int` | `25` | Episodes between adaptation cycles |
+| `evaluation_metrics` | `List[str]` | `[]` | List of metrics to track during execution |
+| `scenario_parameters` | `Dict[str, Any]` | `{}` | Scenario-specific custom parameters |
+
+{: .warning }
+**⚠️ Important Notes**:
+- `scenario_type` is the only required parameter
+- `knowledge_sharing_rate` of `0.0` disables knowledge transfer
+- `adaptation_frequency` should be less than `duration_episodes`
+
+**💻 Quick Examples:**
+
+```python
+# Basic tournament configuration
+config = ScenarioConfig(
+    scenario_type=LearningScenarioType.COMPETITIVE_TOURNAMENT,
+    participants=8,
+    duration_episodes=50
+)
+
+# Research collaboration with high knowledge sharing
+config = ScenarioConfig(
+    scenario_type=LearningScenarioType.COLLABORATIVE_RESEARCH,
+    participants=12,
+    knowledge_sharing_rate=0.8,
+    success_criteria={"discoveries": 3, "innovation_score": 2.5}
+)
+
+# Mentor-student network with custom evaluation
+config = ScenarioConfig(
+    scenario_type=LearningScenarioType.MENTOR_STUDENT_NETWORK,
+    participants=10,
+    evaluation_metrics=["teaching_effectiveness", "learning_speed"],
+    scenario_parameters={"mentor_ratio": 0.3}
+)
+```
 - `scenario_parameters`: Custom scenario-specific parameters
 
 #### `LearningScenarioType`

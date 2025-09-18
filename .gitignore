@@ -200,6 +200,9 @@ datasets/
 # Documentation build
 docs/_site/
 docs/.sass-cache/
+docs/vendor/
+docs/.bundle/
+docs/Gemfile.lock
 
 # Temporary files
 temp/

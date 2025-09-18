@@ -165,31 +165,156 @@ Enables multi-team research coordination with:
 - Innovation metrics calculation
 - Research team formation and management
 
-## Documentation
+## <i class="fas fa-book-open"></i> Documentation
 
-- [Getting Started](getting-started.html) - Installation and basic usage
-- [Architecture Guide](architecture.html) - Detailed system design
-- [API Reference](api-reference.html) - Complete API documentation
-- [Examples](examples.html) - Code examples and tutorials
-- [Data Flow](data-flow.html) - System data flow and processes
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🚀</div>
+    <h3><a href="getting-started.html">Getting Started</a></h3>
+    <p>Installation, setup, and your first multi-agent scenario</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Beginner</span>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🏗️</div>
+    <h3><a href="architecture.html">Architecture Guide</a></h3>
+    <p>System design, components, and architectural patterns</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #3b82f6; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Intermediate</span>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">💡</div>
+    <h3><a href="examples.html">Examples & Tutorials</a></h3>
+    <p>Interactive code examples and step-by-step guides</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Practical</span>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📚</div>
+    <h3><a href="api-reference.html">API Reference</a></h3>
+    <p>Complete documentation of all classes and methods</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #8b5cf6; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Reference</span>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <h3><a href="data-flow.html">Data Flow Guide</a></h3>
+    <p>Interactive diagrams and system flow visualization</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #ec4899; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Advanced</span>
+    </div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔬</div>
+    <h3><a href="#research">Research Papers</a></h3>
+    <p>Academic publications and research findings</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge" style="background: #06b6d4; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem;">Academic</span>
+    </div>
+  </div>
+</div>
 
-## Contributing
+## <i class="fas fa-hands-helping"></i> Contributing
 
-We welcome contributions! Please see our [Contributing Guide](contributing.html) for details.
+<div class="content-section">
 
-## License
+{: .highlight }
+**We welcome contributions from the community!** Whether you're fixing bugs, adding features, or improving documentation, your help makes this library better for everyone.
 
-MIT License - see [LICENSE](https://github.com/aansh/multi-agent-collab-learning/blob/main/LICENSE) for details.
+### <i class="fas fa-code-branch"></i> How to Contribute
 
-## Citation
+1. **🍴 Fork the Repository**
+   ```bash
+   git clone https://github.com/briefcasebrain/multi-agent-collab-learning.git
+   ```
 
-If you use this library in your research, please cite:
+2. **🔧 Set Up Development Environment**
+   ```bash
+   pip install -e .[dev]
+   pre-commit install
+   ```
+
+3. **✨ Make Your Changes**
+   - Follow our coding standards
+   - Add tests for new features
+   - Update documentation as needed
+
+4. **🧪 Run Tests**
+   ```bash
+   pytest tests/
+   black src/
+   flake8 src/
+   ```
+
+5. **📤 Submit Pull Request**
+   - Clear description of changes
+   - Reference any related issues
+   - Include tests and documentation
+
+{: .note }
+**💡 Contribution Ideas**: Check our [GitHub Issues](https://github.com/briefcasebrain/multi-agent-collab-learning/issues) for good first contributions, bug reports, and feature requests.
+
+</div>
+
+## <i class="fas fa-balance-scale"></i> License
+
+<div class="content-section">
+
+{: .important }
+**MIT License** - This library is free and open source. You can use it in both personal and commercial projects.
+
+**Key Points**:
+- ✅ Commercial use allowed
+- ✅ Modification allowed
+- ✅ Distribution allowed
+- ✅ Private use allowed
+- ❗ License and copyright notice required
+
+Full license details: [LICENSE](https://github.com/briefcasebrain/multi-agent-collab-learning/blob/main/LICENSE)
+
+</div>
+
+## <i class="fas fa-quote-right"></i> Citation
+
+{: .highlight }
+**Research Use**: If you use this library in academic research, please cite our work to help others discover it.
 
 ```bibtex
 @software{shah2024multiagentcollab,
-  title={Multi-Agent Collaborative Learning},
+  title={Multi-Agent Collaborative Learning: A Framework for Competitive and Cooperative AI},
   author={Shah, Aansh},
   year={2024},
-  url={https://github.com/aansh/multi-agent-collab-learning}
+  url={https://github.com/briefcasebrain/multi-agent-collab-learning},
+  version={1.0.0},
+  doi={10.5281/zenodo.placeholder}
 }
 ```
+
+**APA Format:**
+```
+Shah, A. (2024). Multi-Agent Collaborative Learning: A Framework for Competitive and Cooperative AI [Computer software]. GitHub. https://github.com/briefcasebrain/multi-agent-collab-learning
+```
+
+## <i class="fas fa-rocket"></i> What's Next?
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">📖</div>
+    <h4>Read the Docs</h4>
+    <p>Start with our <a href="getting-started.html">Getting Started</a> guide</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">💬</div>
+    <h4>Join Community</h4>
+    <p>Connect with other researchers and developers</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🐛</div>
+    <h4>Report Issues</h4>
+    <p>Help us improve by reporting bugs or requesting features</p>
+  </div>
+</div>

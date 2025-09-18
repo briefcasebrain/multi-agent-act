@@ -4,10 +4,50 @@ title: 💡 Examples
 nav_order: 5
 ---
 
-# Examples
+# <i class="fas fa-code"></i> Examples
 {: .no_toc }
 
-Comprehensive examples demonstrating various use cases of the Multi-Agent Collaborative Learning library.
+<div class="content-section" style="background: linear-gradient(135deg, #fff3e0, #fce4ec); text-align: center;">
+  <h2 style="margin-top: 0; color: #1e293b;"><i class="fas fa-play"></i> Interactive Code Examples</h2>
+  <p style="color: #475569;">Learn through hands-on examples with copy-paste ready code and detailed explanations</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+    <span class="badge" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-copy"></i> Copy-Paste Ready
+    </span>
+    <span class="badge" style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-graduation-cap"></i> Educational
+    </span>
+    <span class="badge" style="background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-rocket"></i> Production Ready
+    </span>
+  </div>
+</div>
+
+{: .important }
+> **🎯 Learning Path**: Start with Basic Examples, then progress to Advanced Scenarios. Each example builds upon previous concepts.
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🏆</div>
+    <h4>Tournament Examples</h4>
+    <p>Competitive learning scenarios</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">👨‍🏫</div>
+    <h4>Mentorship Networks</h4>
+    <p>Knowledge transfer examples</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔬</div>
+    <h4>Research Collaboration</h4>
+    <p>Discovery-based scenarios</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🎭</div>
+    <h4>Custom Scenarios</h4>
+    <p>Build your own scenarios</p>
+  </div>
+</div>
 
 ## Table of Contents
 {: .no_toc .text-delta }
@@ -17,37 +57,91 @@ Comprehensive examples demonstrating various use cases of the Multi-Agent Collab
 
 ---
 
-## Basic Examples
+## <i class="fas fa-play-circle"></i> Basic Examples
 
-### 1. Simple Tournament
+{: .note }
+**💡 Quick Start**: These examples require minimal setup and demonstrate core concepts. Perfect for getting familiar with the library.
 
-The most basic usage - setting up a competitive tournament:
+### 1. <i class="fas fa-trophy"></i> Simple Tournament
 
+<div class="content-section">
+
+{: .highlight }
+**🎯 Goal**: Create a basic competitive tournament with 4 agents and understand the core concepts.
+
+**📋 What You'll Learn**:
+- Agent creation and configuration
+- Tournament setup and execution
+- Result analysis and interpretation
+
+{: .warning }
+**⚠️ Prerequisites**: Make sure you have the library installed: `pip install multi-agent-collab-learning`
+
+</div>
+
+**Step 1: Import Required Components**
 ```python
 from multi_agent_collab_learning import (
     CompetitiveLearningTournament,
     ScenarioConfig,
     LearningScenarioType
 )
+import torch
+import random
+```
 
+**Step 2: Create a Simple Agent Class**
+```python
 class SimpleAgent:
+    """A basic agent with skill-based decision making."""
+
     def __init__(self, agent_id: str, skill_level: float = 0.5):
         self.agent_id = agent_id
-        self.skill_level = skill_level
+        self.skill_level = skill_level  # Agent's base skill (0.0 to 1.0)
         self.collaboration_metrics = {}
         self.behavior_weights = {'individual_reward': skill_level}
 
+        # Track performance over time
+        self.wins = 0
+        self.losses = 0
+        self.games_played = 0
+
     def select_action(self, state):
-        import torch, random
-        # Simple skill-based action selection
-        success_prob = self.skill_level + random.uniform(-0.1, 0.1)
-        action = 1 if random.random() < success_prob else 0
+        """Select action based on skill level with some randomness."""
+
+        # Add some variability to make it interesting
+        performance_variance = random.uniform(-0.1, 0.1)
+        success_probability = max(0, min(1, self.skill_level + performance_variance))
+
+        # Make decision (1 = aggressive, 0 = defensive)
+        action = 1 if random.random() < success_probability else 0
 
         return {
             'action': torch.tensor([action]),
             'confidence': self.skill_level,
-            'uncertainty': 1 - self.skill_level
+            'uncertainty': 1 - self.skill_level,
+            'strategy': 'aggressive' if action == 1 else 'defensive'
         }
+
+    def update_performance(self, won: bool):
+        """Update agent's performance statistics."""
+        self.games_played += 1
+        if won:
+            self.wins += 1
+        else:
+            self.losses += 1
+
+    @property
+    def win_rate(self) -> float:
+        """Calculate current win rate."""
+        return self.wins / max(1, self.games_played)
+```
+
+{: .note }
+**🔍 Code Explanation**:
+- `skill_level`: Determines base performance (higher = better)
+- `select_action()`: Makes decisions with controlled randomness
+- Performance tracking helps analyze improvement over time
 
 # Create agents with different skill levels
 agents = [

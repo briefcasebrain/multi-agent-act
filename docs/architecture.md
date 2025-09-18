@@ -4,10 +4,33 @@ title: 🏗️ Architecture Guide
 nav_order: 3
 ---
 
-# Architecture Guide
+# <i class="fas fa-sitemap"></i> Architecture Guide
 {: .no_toc }
 
-Comprehensive architectural overview of the Multi-Agent Collaborative Learning library.
+<div class="content-section" style="background: linear-gradient(135deg, #f3e5f5, #e8eaf6); text-align: center;">
+  <h2 style="margin-top: 0; color: #1e293b;"><i class="fas fa-building"></i> System Architecture Overview</h2>
+  <p style="color: #475569;">Modular, scalable, and extensible design for multi-agent collaborative learning</p>
+  <div class="feature-grid" style="margin-top: 2rem;">
+    <div class="feature-card" style="margin: 0;">
+      <div class="feature-icon">🏗️</div>
+      <h4>Modular Design</h4>
+      <p>Clean separation of concerns</p>
+    </div>
+    <div class="feature-card" style="margin: 0;">
+      <div class="feature-icon">🔗</div>
+      <h4>Extensible</h4>
+      <p>Plugin-based architecture</p>
+    </div>
+    <div class="feature-card" style="margin: 0;">
+      <div class="feature-icon">⚡</div>
+      <h4>High Performance</h4>
+      <p>Optimized for scale</p>
+    </div>
+  </div>
+</div>
+
+{: .important }
+> **🎯 Design Philosophy**: The architecture prioritizes modularity, extensibility, and performance while maintaining simplicity for researchers and developers.
 
 ## Table of Contents
 {: .no_toc .text-delta }
@@ -17,36 +40,159 @@ Comprehensive architectural overview of the Multi-Agent Collaborative Learning l
 
 ---
 
-## System Overview
+## <i class="fas fa-layer-group"></i> System Overview
 
-The Multi-Agent Collaborative Learning library is designed as a modular, extensible framework that enables complex multi-agent learning scenarios. The architecture follows clean separation of concerns with well-defined interfaces between components.
+The Multi-Agent Collaborative Learning library implements a **layered architecture** with clear separation between presentation, orchestration, business logic, and data layers. Each layer has well-defined responsibilities and interfaces.
 
-### High-Level Architecture
+<div class="content-section">
+
+{: .highlight }
+**Key Architectural Principles**:
+- **🔄 Loose Coupling**: Components interact through well-defined interfaces
+- **📦 High Cohesion**: Related functionality is grouped together
+- **🔧 Extensibility**: Plugin architecture for custom scenarios and algorithms
+- **⚡ Performance**: Optimized data flows and memory management
+- **🧪 Testability**: Dependency injection and mock-friendly design
+
+</div>
+
+### <i class="fas fa-diagram-project"></i> High-Level Architecture
+
+{: .note }
+**📋 Architecture Overview**: This diagram shows the main system components and their relationships. Click on different sections to understand the data flow.
 
 ```mermaid
-graph TB
-    A[User Interface] --> B[Scenario Orchestrator]
-    B --> C[Scenario Implementations]
-    C --> D[Knowledge Systems]
-    C --> E[Agent Management]
-    C --> F[Environment Interface]
+flowchart TB
+    subgraph "🎯 Presentation Layer"
+        A[👤 User Interface]
+        A1[📊 Dashboard]
+        A2[⚙️ Configuration UI]
+        A --> A1
+        A --> A2
+    end
 
-    D --> G[Knowledge Distillation]
-    D --> H[Cross-Agent Learning]
+    subgraph "🎭 Orchestration Layer"
+        B[🎪 Scenario Orchestrator]
+        B1[📅 Task Scheduler]
+        B2[🔄 Lifecycle Manager]
+        B --> B1
+        B --> B2
+    end
 
-    E --> I[Behavior Weights]
-    E --> J[Collaboration Metrics]
+    subgraph "🧠 Business Logic Layer"
+        C[🎮 Scenario Implementations]
+        D[🧠 Knowledge Systems]
+        E[🤖 Agent Management]
+        F[🌍 Environment Interface]
 
-    F --> K[State Management]
-    F --> L[Action Execution]
+        C --> D
+        C --> E
+        C --> F
+    end
 
-    M[Visualization] --> N[Learning Curves]
-    M --> O[Network Analysis]
-    M --> P[Performance Metrics]
+    subgraph "💾 Data Layer"
+        K[💾 State Management]
+        L[⚡ Action Execution]
+        M1[📈 Metrics Storage]
+        F --> K
+        F --> L
+        E --> M1
+    end
 
-    Q[Configuration] --> R[Scenario Config]
-    Q --> S[Learning Parameters]
+    subgraph "🔬 Knowledge Processing"
+        G[🧬 Knowledge Distillation]
+        H[🤝 Cross-Agent Learning]
+        I[⚖️ Behavior Weights]
+        J[📊 Collaboration Metrics]
+
+        D --> G
+        D --> H
+        E --> I
+        E --> J
+    end
+
+    subgraph "📊 Visualization & Analytics"
+        M[📈 Visualization Engine]
+        N[📉 Learning Curves]
+        O[🕸️ Network Analysis]
+        P[🎯 Performance Metrics]
+
+        M --> N
+        M --> O
+        M --> P
+    end
+
+    subgraph "⚙️ Configuration Management"
+        Q[🔧 Configuration Manager]
+        R[🎮 Scenario Config]
+        S[🧠 Learning Parameters]
+
+        Q --> R
+        Q --> S
+    end
+
+    %% Main flow connections
+    A --> B
+    B --> C
+    J --> M
+    M1 --> M
+    K --> M
+
+    %% Configuration flows
+    A2 --> Q
+    Q --> B
+    Q --> C
+
+    %% Styling
+    classDef presentationLayer fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    classDef orchestrationLayer fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
+    classDef businessLayer fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000
+    classDef dataLayer fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000
+    classDef knowledgeLayer fill:#fce4ec,stroke:#c2185b,stroke-width:3px,color:#000
+    classDef visualLayer fill:#f1f8e9,stroke:#689f38,stroke-width:3px,color:#000
+    classDef configLayer fill:#fafafa,stroke:#424242,stroke-width:3px,color:#000
+
+    class A,A1,A2 presentationLayer
+    class B,B1,B2 orchestrationLayer
+    class C,D,E,F businessLayer
+    class K,L,M1 dataLayer
+    class G,H,I,J knowledgeLayer
+    class M,N,O,P visualLayer
+    class Q,R,S configLayer
 ```
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #1976d2;">🎯</div>
+    <h4>Presentation Layer</h4>
+    <p>User interfaces and dashboards for interaction and monitoring</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #7b1fa2;">🎭</div>
+    <h4>Orchestration Layer</h4>
+    <p>Scenario management and lifecycle coordination</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #388e3c;">🧠</div>
+    <h4>Business Logic</h4>
+    <p>Core learning algorithms and agent implementations</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #f57c00;">💾</div>
+    <h4>Data Layer</h4>
+    <p>State management and persistent storage systems</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #c2185b;">🔬</div>
+    <h4>Knowledge Processing</h4>
+    <p>Advanced knowledge transfer and learning optimization</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon" style="color: #689f38;">📊</div>
+    <h4>Visualization</h4>
+    <p>Real-time analytics and performance monitoring</p>
+  </div>
+</div>
 
 ## Core Components
 

@@ -7,7 +7,24 @@ nav_order: 2
 # <i class="fas fa-rocket"></i> Getting Started
 {: .no_toc }
 
-Complete guide to setting up and using the Multi-Agent Collaborative Learning library.
+<div class="content-section" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); text-align: center;">
+  <h2 style="margin-top: 0; color: #1e293b;"><i class="fas fa-play-circle"></i> Quick Start Guide</h2>
+  <p style="color: #475569;">Get up and running with multi-agent collaborative learning in minutes</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+    <span class="badge" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-download"></i> Easy Installation
+    </span>
+    <span class="badge" style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-code"></i> Ready-to-Use Examples
+    </span>
+    <span class="badge" style="background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem;">
+      <i class="fas fa-rocket"></i> Production Ready
+    </span>
+  </div>
+</div>
+
+{: .important }
+> **🎯 Prerequisites Check**: Before starting, ensure you have Python 3.8+ and basic familiarity with machine learning concepts. All other dependencies will be installed automatically.
 
 ## Table of Contents
 {: .no_toc .text-delta }
@@ -17,27 +34,70 @@ Complete guide to setting up and using the Multi-Agent Collaborative Learning li
 
 ---
 
-## Installation
+## <i class="fas fa-download"></i> Installation
 
-### Prerequisites
+<div class="feature-grid" style="margin: 2rem 0;">
+  <div class="feature-card">
+    <div class="feature-icon">⚡</div>
+    <h4>Quick Install</h4>
+    <p>Get started in seconds with pip</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔧</div>
+    <h4>Development Setup</h4>
+    <p>Full development environment</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🐳</div>
+    <h4>Docker Support</h4>
+    <p>Containerized deployment ready</p>
+  </div>
+</div>
 
-- Python 3.8 or higher
-- PyTorch 1.12+ (for neural components)
-- NumPy 1.21+
-- NetworkX 2.8+ (for collaboration networks)
+### <i class="fas fa-clipboard-check"></i> Prerequisites
 
-### Quick Install
+{: .highlight }
+> **System Requirements**: The library is designed to work across platforms with minimal setup requirements.
 
+| Component | Version | Purpose | Installation |
+|-----------|---------|---------|--------------|
+| **Python** | 3.8+ | Core runtime | `python --version` |
+| **PyTorch** | 1.12+ | Neural networks | Auto-installed |
+| **NumPy** | 1.21+ | Numerical computing | Auto-installed |
+| **NetworkX** | 2.8+ | Graph operations | Auto-installed |
+
+{: .note }
+**💡 Tip**: Use a virtual environment to avoid dependency conflicts: `python -m venv venv && source venv/bin/activate`
+
+### <i class="fas fa-zap"></i> Quick Install
+
+<div class="content-section">
+
+{: .highlight }
+Choose your installation method based on your needs:
+
+**🎯 Basic Installation**
 ```bash
-# Basic installation
 pip install multi-agent-collab-learning
+```
 
-# With visualization support
+**📊 With Visualization Support**
+```bash
 pip install multi-agent-collab-learning[visualization]
+```
 
-# Full installation with all optional dependencies
+**🚀 Full Installation (Recommended)**
+```bash
 pip install multi-agent-collab-learning[all]
 ```
+
+{: .note }
+**Installation Options Explained**:
+- `basic`: Core functionality only
+- `[visualization]`: Adds plotting and diagram generation
+- `[all]`: Complete package with all optional features
+
+</div>
 
 ### Development Installation
 
