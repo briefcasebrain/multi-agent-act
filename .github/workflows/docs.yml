@@ -1,0 +1,107 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'docs/**'
+      - 'multi_agent_collab_learning/**'
+      - 'README.md'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'multi_agent_collab_learning/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[docs]
+        pip install sphinx sphinx-rtd-theme myst-parser sphinx-autodoc-typehints
+
+    - name: Generate API documentation
+      run: |
+        # API documentation is maintained manually in docs/api-reference.md
+        # No automatic generation needed
+        echo "Using manually maintained API documentation"
+
+    - name: Setup Ruby for Jekyll
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+
+    - name: Setup Pages
+      id: pages
+      uses: actions/configure-pages@v3
+      with:
+        static_site_generator: jekyll
+
+    - name: Create Gemfile
+      run: |
+        cat > docs/Gemfile << 'EOF'
+        source "https://rubygems.org"
+        gem "github-pages", group: :jekyll_plugins
+        gem "jekyll-remote-theme"
+        gem "jekyll-feed"
+        gem "jekyll-sitemap"
+        gem "jekyll-seo-tag"
+        gem "just-the-docs"
+        EOF
+
+    - name: Install Jekyll dependencies
+      working-directory: ./docs
+      run: bundle install
+
+    - name: Build Jekyll site
+      working-directory: ./docs
+      run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+      env:
+        JEKYLL_ENV: production
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ./docs/_site
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
+
+  # DeepWiki documentation generation is handled manually as needed
+  # Automated generation disabled per user preference

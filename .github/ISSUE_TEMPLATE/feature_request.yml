@@ -1,0 +1,149 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "feature-request"]
+assignees:
+  - aansh
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide detailed information about your request to help us understand and evaluate it.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New Learning Scenario
+        - Agent Implementation
+        - Visualization Enhancement
+        - Performance Optimization
+        - API Enhancement
+        - Documentation Improvement
+        - Integration with External Library
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe the current limitation or pain point.
+      placeholder: I'm frustrated when... / It would be helpful if... / Currently it's difficult to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented.
+      placeholder: I would like to see... / The feature should work by... / It should be possible to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Describe specific use cases where this feature would be valuable.
+      placeholder: |
+        This feature would be useful for:
+        1. Researchers working on...
+        2. Developers implementing...
+        3. Users who need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-design
+    attributes:
+      label: Proposed API Design
+      description: If applicable, suggest how the API should look
+      render: python
+      placeholder: |
+        # Example of how the new feature could be used
+        from multi_agent_collab_learning import NewFeature
+
+        feature = NewFeature(parameter1="value", parameter2=123)
+        result = feature.execute()
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you've considered.
+      placeholder: I also considered... / Another approach could be... / Workarounds I've tried...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would improve my workflow
+        - High - Blocking my current work
+        - Critical - Essential for my project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Low - Small change or addition
+        - Medium - Moderate implementation effort
+        - High - Significant development required
+        - Unknown - Not sure about implementation complexity
+    validations:
+      required: false
+
+  - type: textarea
+    id: research
+    attributes:
+      label: Research & References
+      description: Any research papers, libraries, or examples that relate to this feature?
+      placeholder: |
+        - Related paper: "Title" by Author et al. (link)
+        - Similar implementation in: Library name
+        - Reference materials: ...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you be interested in contributing to the implementation?
+      options:
+        - label: I'd be willing to help implement this feature
+        - label: I'd be willing to help test this feature
+        - label: I'd be willing to help with documentation
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, mockups, or examples about the feature request.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

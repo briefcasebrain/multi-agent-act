@@ -1,0 +1,119 @@
+# Site Configuration
+title: Multi-Agent Collaborative Learning
+description: A comprehensive Python library for multi-agent collaborative learning scenarios
+baseurl: "/multi-agent-collab-learning"
+url: "https://docs.briefcasebrain.ai"
+
+# Theme
+remote_theme: just-the-docs/just-the-docs
+color_scheme: light
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Mermaid support
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "10.6.1"
+
+# Custom head scripts for Mermaid
+head_scripts: |
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        primaryColor: '#2196F3',
+        primaryTextColor: '#000000',
+        primaryBorderColor: '#1976D2',
+        lineColor: '#999999',
+        secondaryColor: '#E3F2FD',
+        tertiaryColor: '#BBDEFB'
+      }
+    });
+  </script>
+
+# Navigation
+nav_external_links:
+  - title: ← All Briefcase Brain Docs
+    url: https://docs.briefcasebrain.ai
+    hide_icon: false
+  - title: GitHub Repository
+    url: https://github.com/briefcasebrain/multi-agent-collab-learning
+    hide_icon: false
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Aux links
+aux_links:
+  "All Projects":
+    - "https://docs.briefcasebrain.ai"
+  "Source Code":
+    - "https://github.com/briefcasebrain/multi-agent-collab-learning"
+  "PyPI Package":
+    - "#" # Will be updated when published
+
+# Footer
+footer_content: "Copyright &copy; 2024 Aansh Shah. Distributed under the MIT License."
+
+# Code highlighting
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Collections for better organization
+collections:
+  scenarios:
+    output: true
+    permalink: /:collection/:name/
+  examples:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: "_scenarios"
+      type: "scenarios"
+    values:
+      layout: "default"
+      parent: "Scenarios"
+  - scope:
+      path: "_examples"
+      type: "examples"
+    values:
+      layout: "default"
+      parent: "Examples"
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - README.md

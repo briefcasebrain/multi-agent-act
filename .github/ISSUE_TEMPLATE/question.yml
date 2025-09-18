@@ -1,0 +1,108 @@
+name: Question
+description: Ask a question about the library
+title: "[Question]: "
+labels: ["question", "help-wanted"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please provide as much detail as possible to help us give you the best answer.
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: What kind of question is this?
+      options:
+        - Usage - How to use the library
+        - Implementation - How to implement custom components
+        - Troubleshooting - Having issues with existing code
+        - Best Practices - Seeking recommendations
+        - Architecture - Understanding library design
+        - Performance - Optimization questions
+        - Integration - Working with other libraries
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question in detail
+      placeholder: What would you like to know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about what you're trying to achieve
+      placeholder: |
+        I'm trying to...
+        My goal is to...
+        I want to understand...
+    validations:
+      required: true
+
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What Have You Tried?
+      description: What approaches have you already attempted?
+      placeholder: |
+        I've tried...
+        I looked at...
+        I searched for...
+    validations:
+      required: false
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Relevant Code
+      description: If applicable, show the code you're working with
+      render: python
+      placeholder: |
+        # Your code here
+        from multi_agent_collab_learning import ...
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Library Version
+      description: What version of multi-agent-collab-learning are you using?
+      placeholder: e.g., 0.1.0
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other relevant information, links, or context
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Due Diligence
+      description: Have you checked these resources first?
+      options:
+        - label: I searched existing issues and discussions
+        - label: I checked the documentation
+        - label: I looked at the examples in the repository
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
