@@ -5,50 +5,118 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-<!-- Enhanced Code Blocks with Copy Functionality and Mermaid Preprocessing -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Convert Mermaid code blocks to the format the theme expects
-  function prepareMermaidBlocks() {
-    const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid');
+<!-- Mermaid Configuration for Sequence Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@{{ site.mermaid.version }}/dist/mermaid.esm.min.mjs';
 
-    mermaidCodeBlocks.forEach(codeElement => {
-      const diagramCode = codeElement.textContent || codeElement.innerText;
+  // Configuration optimized for sequence diagrams
+  const config = {
+    startOnLoad: false,
+    theme: 'default',
+    themeVariables: {
+      primaryColor: '#3b82f6',
+      primaryTextColor: '#1f2937',
+      primaryBorderColor: '#2563eb',
+      lineColor: '#6b7280',
+      secondaryColor: '#f0f9ff',
+      tertiaryColor: '#dbeafe',
+      background: '#ffffff',
+      mainBkg: '#ffffff',
+      fontFamily: 'Inter, system-ui, sans-serif'
+    },
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis'
+    },
+    sequence: {
+      useMaxWidth: true,
+      wrap: true,
+      mirrorActors: false,
+      actorFontSize: 14,
+      actorFontFamily: 'Inter, system-ui, sans-serif',
+      messageFontSize: 12,
+      messageFontFamily: 'Inter, system-ui, sans-serif'
+    },
+    gantt: {
+      useMaxWidth: true
+    },
+    gitgraph: {
+      useMaxWidth: true
+    },
+    securityLevel: 'loose',
+    maxTextSize: 90000,
+    fontFamily: 'Inter, system-ui, sans-serif'
+  };
 
-      // Create new div with the mermaid class and content
+  // Initialize mermaid
+  mermaid.initialize(config);
+
+  // Function to process all mermaid diagrams
+  function processMermaidDiagrams() {
+    console.log('🧜‍♀️ Processing Mermaid diagrams...');
+
+    // Find all mermaid code blocks
+    const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid, code.language-mermaid');
+    console.log(`Found ${mermaidBlocks.length} mermaid code blocks`);
+
+    mermaidBlocks.forEach((codeBlock, index) => {
+      const diagramCode = codeBlock.textContent || codeBlock.innerText;
+      console.log(`📊 Processing diagram ${index + 1}:`, diagramCode.substring(0, 50) + '...');
+
+      // Create mermaid div
       const mermaidDiv = document.createElement('div');
-      mermaidDiv.className = 'language-mermaid';
-      mermaidDiv.textContent = diagramCode;
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.style.textAlign = 'center';
+      mermaidDiv.style.margin = '20px 0';
+      mermaidDiv.style.border = '1px solid #e5e7eb';
+      mermaidDiv.style.borderRadius = '8px';
+      mermaidDiv.style.padding = '20px';
+      mermaidDiv.style.backgroundColor = '#fafafa';
+      mermaidDiv.textContent = diagramCode.trim();
 
-      // Replace the entire pre > code structure with our div
-      const preElement = codeElement.parentElement;
-      const wrapperDiv = preElement.parentElement; // Usually div.highlighter-rouge
+      // Find the container to replace
+      const preElement = codeBlock.closest('pre');
+      const container = preElement ? preElement.parentElement : codeBlock.parentElement;
 
-      if (wrapperDiv && wrapperDiv.classList.contains('highlighter-rouge')) {
-        wrapperDiv.parentNode.replaceChild(mermaidDiv, wrapperDiv);
-      } else {
-        preElement.parentNode.replaceChild(mermaidDiv, preElement);
+      if (container) {
+        const elementToReplace = preElement || codeBlock;
+        container.replaceChild(mermaidDiv, elementToReplace);
+        console.log(`✅ Replaced diagram ${index + 1}`);
       }
     });
+
+    // Render all mermaid diagrams
+    if (mermaidBlocks.length > 0) {
+      console.log('🎨 Rendering mermaid diagrams...');
+      mermaid.run({
+        querySelector: '.mermaid'
+      }).then(() => {
+        console.log('✨ All diagrams rendered successfully!');
+      }).catch(error => {
+        console.error('❌ Mermaid rendering error:', error);
+      });
+    } else {
+      console.log('ℹ️ No mermaid diagrams found to process');
+    }
   }
 
-  // Enhanced code block processing
+  // Enhanced code block processing with copy buttons
   function enhanceCodeBlocks() {
     const codeBlocks = document.querySelectorAll('div.highlighter-rouge');
 
     codeBlocks.forEach(block => {
-      const pre = block.querySelector('pre');
       const code = block.querySelector('code');
 
       if (code && code.className) {
-        // Extract language from class name
         const langMatch = code.className.match(/language-(\w+)/);
         if (langMatch) {
           const language = langMatch[1];
-          block.classList.add(`language-${language}`);
 
-          // Skip mermaid blocks as they're handled separately
+          // Skip mermaid blocks
           if (language === 'mermaid') return;
+
+          block.classList.add(`language-${language}`);
 
           // Add copy button
           const copyButton = document.createElement('button');
@@ -73,11 +141,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Run preprocessing before other scripts
-  prepareMermaidBlocks();
-  enhanceCodeBlocks();
-});
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      processMermaidDiagrams();
+      enhanceCodeBlocks();
+    });
+  } else {
+    processMermaidDiagrams();
+    enhanceCodeBlocks();
+  }
 </script>
-
-<!-- Include Mermaid Component (theme built-in) -->
-{% include components/mermaid.html %}

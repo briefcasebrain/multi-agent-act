@@ -71,6 +71,15 @@ aux_links:
 # Footer
 footer_content: "Copyright &copy; 2024 Aansh Shah. Distributed under the MIT License."
 
+# Disable theme's default footer
+back_to_top: true
+back_to_top_text: "Back to top"
+last_edit_timestamp: false
+
+# Disable theme attribution in footer
+enable_copy_code_button: true
+search_enabled: true
+
 # Code highlighting
 highlighter: rouge
 markdown: kramdown

@@ -19,8 +19,20 @@
   },
   "sequence": {
     "useMaxWidth": true,
-    "wrap": true
+    "wrap": true,
+    "mirrorActors": false,
+    "actorFontSize": 14,
+    "actorFontFamily": "Inter, system-ui, sans-serif",
+    "messageFontSize": 12,
+    "messageFontFamily": "Inter, system-ui, sans-serif"
+  },
+  "gantt": {
+    "useMaxWidth": true
+  },
+  "gitgraph": {
+    "useMaxWidth": true
   },
   "securityLevel": "loose",
-  "maxTextSize": 90000
+  "maxTextSize": 90000,
+  "fontFamily": "Inter, system-ui, sans-serif"
 }

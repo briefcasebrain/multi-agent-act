@@ -1,0 +1,15 @@
+<!-- Custom footer to override theme's footer with attribution -->
+<footer class="site-footer">
+  <hr>
+  <div class="d-flex flex-justify-between flex-items-center">
+    <div class="d-flex flex-items-center">
+      {% if site.back_to_top %}
+        <p><a href="#top" id="back-to-top">{{ site.back_to_top_text | default: "Back to top" }}</a></p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if site.footer_content %}
+    <p class="text-small text-grey-dk-100 mb-0">{{ site.footer_content }}</p>
+  {% endif %}
+</footer>
