@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Getting Started
+title: 🚀 Getting Started
 nav_order: 2
 ---
 
-# Getting Started
+# <i class="fas fa-rocket"></i> Getting Started
 {: .no_toc }
 
 Complete guide to setting up and using the Multi-Agent Collaborative Learning library.

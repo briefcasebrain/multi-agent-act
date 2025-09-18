@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Data Flow Guide
-nav_order: 3
+title: 📊 Data Flow Guide
+nav_order: 4
 ---
 
 # Data Flow Guide

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Examples
+title: 💡 Examples
 nav_order: 5
 ---
 

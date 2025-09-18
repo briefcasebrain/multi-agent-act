@@ -1,6 +1,6 @@
 ---
 layout: default
-title: API Reference
+title: 📚 API Reference
 nav_order: 6
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Architecture Guide
-nav_order: 2
+title: 🏗️ Architecture Guide
+nav_order: 3
 ---
 
 # Architecture Guide

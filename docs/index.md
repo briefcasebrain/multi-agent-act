@@ -7,7 +7,51 @@ nav_order: 1
 # Multi-Agent Collaborative Learning Library
 {: .no_toc }
 
-A comprehensive Python library for implementing advanced multi-agent collaborative learning scenarios including competitive tournaments, mentor-student networks, collaborative research environments, and more.
+<div class="content-section" style="text-align: center; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: none; margin-bottom: 3rem;">
+  <h2 style="margin-top: 0; font-size: 1.5rem; color: #1e293b;">🤖 Advanced Multi-Agent Learning Framework</h2>
+  <p style="font-size: 1.2rem; color: #475569; margin-bottom: 2rem;">A comprehensive Python library for implementing competitive tournaments, mentor-student networks, collaborative research environments, and more.</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="#quick-start" class="btn btn-primary">
+      <i class="fas fa-rocket"></i> Get Started
+    </a>
+    <a href="https://github.com/briefcasebrain/multi-agent-collab-learning" class="btn">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+  </div>
+</div>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🏆</div>
+    <h3>Competitive Tournaments</h3>
+    <p>ELO-ranked tournaments with adaptive strategies and competitive behavior analysis</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">👨‍🏫</div>
+    <h3>Mentor-Student Networks</h3>
+    <p>Knowledge distillation and teaching effectiveness tracking systems</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔬</div>
+    <h3>Collaborative Research</h3>
+    <p>Discovery systems with cross-domain knowledge transfer capabilities</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <h3>Rich Visualization</h3>
+    <p>Learning curves, collaboration networks, and performance analytics</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔧</div>
+    <h3>Extensible Architecture</h3>
+    <p>Modular design for custom scenarios and learning algorithms</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">⚡</div>
+    <h3>High Performance</h3>
+    <p>Optimized for large-scale multi-agent simulations and experiments</p>
+  </div>
+</div>
 
 ## Table of Contents
 {: .no_toc .text-delta }
@@ -21,19 +65,18 @@ A comprehensive Python library for implementing advanced multi-agent collaborati
 
 The Multi-Agent Collaborative Learning Library provides a robust framework for creating and orchestrating complex multi-agent learning scenarios. Built with extensibility and performance in mind, it enables researchers and developers to explore various forms of collaborative intelligence.
 
-### Key Features
-
-- **🏆 Competitive Learning Tournaments**: ELO-ranked tournaments with adaptive strategies
-- **👨‍🏫 Mentor-Student Networks**: Knowledge distillation and teaching effectiveness tracking
-- **🔬 Collaborative Research**: Discovery systems with cross-domain knowledge transfer
-- **🎭 Scenario Orchestration**: Sequential scenario execution with cross-learning analysis
-- **📊 Rich Visualization**: Learning curves, collaboration networks, and performance analytics
-- **🔧 Extensible Architecture**: Modular design for custom scenarios and learning algorithms
+{: .important }
+> **Why Choose Multi-Agent Collaborative Learning?**
+>
+> This library stands out by focusing on **collaborative intelligence** rather than just individual agent performance. It provides unique scenarios like mentor-student relationships and research collaborations that aren't available in other frameworks.
 
 ## Quick Start
 
-### Installation
+<div class="content-section">
 
+### <i class="fas fa-download"></i> Installation
+
+{: .highlight }
 ```bash
 # From PyPI (coming soon)
 pip install multi-agent-collab-learning
@@ -43,6 +86,8 @@ git clone https://github.com/briefcasebrain/multi-agent-collab-learning.git
 cd multi-agent-collab-learning
 pip install -e .
 ```
+
+</div>
 
 ### Basic Example
 

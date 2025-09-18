@@ -8,6 +8,24 @@ url: "https://docs.briefcasebrain.ai"
 remote_theme: just-the-docs/just-the-docs
 color_scheme: light
 
+# Callouts
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
 # Plugins
 plugins:
   - jekyll-feed
@@ -20,32 +38,39 @@ mermaid:
   # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
   version: "10.6.1"
 
-# Custom head scripts for Mermaid
+# Custom head scripts for Mermaid and styling
 head_scripts: |
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
   <script>
     mermaid.initialize({
       startOnLoad: true,
       theme: 'default',
       themeVariables: {
-        primaryColor: '#2196F3',
-        primaryTextColor: '#000000',
-        primaryBorderColor: '#1976D2',
-        lineColor: '#999999',
-        secondaryColor: '#E3F2FD',
-        tertiaryColor: '#BBDEFB'
+        primaryColor: '#3b82f6',
+        primaryTextColor: '#1f2937',
+        primaryBorderColor: '#2563eb',
+        lineColor: '#6b7280',
+        secondaryColor: '#f0f9ff',
+        tertiaryColor: '#dbeafe',
+        background: '#ffffff',
+        mainBkg: '#ffffff'
       }
     });
   </script>
 
 # Navigation
 nav_external_links:
-  - title: ← All Briefcase Brain Docs
+  - title: <i class="fas fa-arrow-left"></i> All Briefcase Brain Docs
     url: https://docs.briefcasebrain.ai
-    hide_icon: false
-  - title: GitHub Repository
+    hide_icon: true
+  - title: <i class="fab fa-github"></i> GitHub Repository
     url: https://github.com/briefcasebrain/multi-agent-collab-learning
-    hide_icon: false
+    hide_icon: true
 
 # Search
 search_enabled: true
@@ -60,11 +85,11 @@ search:
 
 # Aux links
 aux_links:
-  "All Projects":
+  "<i class='fas fa-home'></i> All Projects":
     - "https://docs.briefcasebrain.ai"
-  "Source Code":
+  "<i class='fab fa-github'></i> Source Code":
     - "https://github.com/briefcasebrain/multi-agent-collab-learning"
-  "PyPI Package":
+  "<i class='fas fa-download'></i> PyPI Package":
     - "#" # Will be updated when published
 
 # Footer
