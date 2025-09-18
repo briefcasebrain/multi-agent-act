@@ -62,6 +62,7 @@ jobs:
       uses: actions/configure-pages@v5
       with:
         static_site_generator: jekyll
+        enablement: true
 
     - name: Create Gemfile
       run: |
