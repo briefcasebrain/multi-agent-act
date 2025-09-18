@@ -1,39 +1,83 @@
-<!-- Enhanced Mermaid and Code Rendering -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+<!-- Enhanced Styling and Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: 'default',
-      themeVariables: {
-        primaryColor: '#3b82f6',
-        primaryTextColor: '#1f2937',
-        primaryBorderColor: '#2563eb',
-        lineColor: '#6b7280',
-        secondaryColor: '#f0f9ff',
-        tertiaryColor: '#dbeafe',
-        background: '#ffffff',
-        mainBkg: '#ffffff',
-        fontFamily: 'Inter, system-ui, sans-serif'
-      },
-      flowchart: {
-        useMaxWidth: true,
-        htmlLabels: true,
-        curve: 'basis'
-      },
-      sequence: {
-        useMaxWidth: true,
-        wrap: true
-      },
-      securityLevel: 'loose'
-    });
 
-    // Enhanced rendering will be handled by mermaid-init.js
-  });
+<!-- Enhanced Code Blocks with Copy Functionality and Mermaid Preprocessing -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Convert Mermaid code blocks to the format the theme expects
+  function prepareMermaidBlocks() {
+    const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid');
+
+    mermaidCodeBlocks.forEach(codeElement => {
+      const diagramCode = codeElement.textContent || codeElement.innerText;
+
+      // Create new div with the mermaid class and content
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'language-mermaid';
+      mermaidDiv.textContent = diagramCode;
+
+      // Replace the entire pre > code structure with our div
+      const preElement = codeElement.parentElement;
+      const wrapperDiv = preElement.parentElement; // Usually div.highlighter-rouge
+
+      if (wrapperDiv && wrapperDiv.classList.contains('highlighter-rouge')) {
+        wrapperDiv.parentNode.replaceChild(mermaidDiv, wrapperDiv);
+      } else {
+        preElement.parentNode.replaceChild(mermaidDiv, preElement);
+      }
+    });
+  }
+
+  // Enhanced code block processing
+  function enhanceCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('div.highlighter-rouge');
+
+    codeBlocks.forEach(block => {
+      const pre = block.querySelector('pre');
+      const code = block.querySelector('code');
+
+      if (code && code.className) {
+        // Extract language from class name
+        const langMatch = code.className.match(/language-(\w+)/);
+        if (langMatch) {
+          const language = langMatch[1];
+          block.classList.add(`language-${language}`);
+
+          // Skip mermaid blocks as they're handled separately
+          if (language === 'mermaid') return;
+
+          // Add copy button
+          const copyButton = document.createElement('button');
+          copyButton.className = 'copy-code-button';
+          copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+          copyButton.title = 'Copy code';
+
+          copyButton.addEventListener('click', () => {
+            const codeText = code.textContent || code.innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+              copyButton.innerHTML = '<i class="fas fa-check"></i>';
+              setTimeout(() => {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+              }, 2000);
+            });
+          });
+
+          block.style.position = 'relative';
+          block.appendChild(copyButton);
+        }
+      }
+    });
+  }
+
+  // Run preprocessing before other scripts
+  prepareMermaidBlocks();
+  enhanceCodeBlocks();
+});
 </script>
-<script src="{{ '/assets/js/mermaid-init.js' | relative_url }}"></script>
+
+<!-- Include Mermaid Component (theme built-in) -->
+{% include components/mermaid.html %}

@@ -32,10 +32,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# Mermaid support
+# Mermaid support (built into just-the-docs theme)
 mermaid:
-  # Version of mermaid library
-  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  # Version of mermaid library - v10+ uses new API
   version: "10.6.1"
 
 # Custom head includes are handled by _includes/head_custom.html

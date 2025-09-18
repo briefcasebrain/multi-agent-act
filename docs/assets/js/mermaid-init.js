@@ -37,35 +37,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to render Mermaid diagrams
   function renderMermaidDiagrams() {
-    // Find all code blocks with mermaid class
-    const mermaidBlocks = document.querySelectorAll('code.language-mermaid, .language-mermaid');
+    console.log('Searching for Mermaid diagrams...');
+
+    // Find all code blocks with mermaid class - try multiple selectors
+    const selectors = [
+      'code.language-mermaid',
+      '.language-mermaid code',
+      'pre code.language-mermaid',
+      '.highlighter-rouge .language-mermaid',
+      'pre.highlight code.language-mermaid'
+    ];
+
+    let mermaidBlocks = [];
+    selectors.forEach(selector => {
+      const found = document.querySelectorAll(selector);
+      mermaidBlocks = mermaidBlocks.concat(Array.from(found));
+    });
+
+    console.log(`Found ${mermaidBlocks.length} Mermaid code blocks`);
 
     mermaidBlocks.forEach((block, index) => {
       const diagramCode = block.textContent || block.innerText;
+      console.log(`Processing diagram ${index}:`, diagramCode.substring(0, 50) + '...');
 
       // Create a new div for the diagram
       const diagramDiv = document.createElement('div');
-      diagramDiv.className = 'mermaid';
+      diagramDiv.className = 'mermaid-diagram';
       diagramDiv.id = `mermaid-diagram-${index}`;
+      diagramDiv.textContent = diagramCode; // Set the code content for mermaid to process
 
-      // Replace the code block with the diagram div
-      const parent = block.parentElement;
-      if (parent.tagName.toLowerCase() === 'pre') {
-        parent.parentNode.replaceChild(diagramDiv, parent);
-      } else {
-        block.parentNode.replaceChild(diagramDiv, block);
+      // Find the container to replace (could be pre, div.highlighter-rouge, etc.)
+      let container = block;
+      while (container.parentElement &&
+             !container.classList.contains('highlighter-rouge') &&
+             container.tagName.toLowerCase() !== 'pre') {
+        container = container.parentElement;
       }
 
-      // Render the diagram
+      // If we found a container, replace it, otherwise replace the block itself
+      const parentElement = container.parentElement || block.parentElement;
+      const elementToReplace = container.parentElement ? container : block;
+
+      parentElement.replaceChild(diagramDiv, elementToReplace);
+
+      console.log(`Replaced element for diagram ${index}`);
+    });
+
+    // Now initialize mermaid to process all the diagram divs
+    if (mermaidBlocks.length > 0) {
+      console.log('Initializing Mermaid rendering...');
       try {
-        mermaid.render(`mermaid-svg-${index}`, diagramCode, (svgCode) => {
-          diagramDiv.innerHTML = svgCode;
+        mermaid.run({
+          querySelector: '.mermaid-diagram'
         });
+        console.log('Mermaid rendering complete');
       } catch (error) {
         console.error('Mermaid rendering error:', error);
-        diagramDiv.innerHTML = `<p style="color: red;">Error rendering diagram: ${error.message}</p>`;
       }
-    });
+    }
   }
 
   // Enhanced code block processing

@@ -329,7 +329,7 @@ table {
 .highlight .nf { color: #0984e3; font-weight: bold; }
 
 // Mermaid diagram styling
-.mermaid {
+.mermaid, .mermaid-diagram {
   text-align: center;
   margin: 2rem 0;
   background: var(--neutral-50);
@@ -337,6 +337,7 @@ table {
   border-radius: 0.5rem;
   padding: 1.5rem;
   overflow-x: auto;
+  min-height: 100px;
 
   svg {
     max-width: 100%;
